@@ -1,0 +1,163 @@
+<div class="col bg-light lter" ng-init="init()">
+    <!-- <button style="position: absolute;z-index: 10; opacity: 0.85;" class=" btn btn-md btn-black pull-right" ng-show="manage" ng-click="editComCover()">
+        <span class="text">Đổi ảnh bìa</span>
+    </button> -->
+    <div id="afterLoad" style="background: url('{{vm.cover}}') left bottom / cover; position: relative;">
+        <div class="wrapper-lg two" style="padding-top: 300px; padding-bottom: 0px">
+            <div class="row" style="margin-top: -30px;" ng-init="showImg = false; button_mouse = false">
+                <div class="m-t-n-lg col-md-8 col-md-offset-2 hidden-xs" style="position: absolute; z-index: 10; margin-top: -30px;" ng-mouseover="showImg = true" ng-mouseleave="showImg = false">
+                    <a href class="thumb-xl pull-left m-r">
+                        <img src="content/images/member/avatar/md.png" class="img-circle avatar thumb-xl" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    </a>
+                </div>
+                <div class="clear col-md-8 col-md-offset-2">
+                    <div class="col-md-12 m-t-sm" style="margin-left: 110px; text-shadow: 0 0 3px #FF0000;">
+                        <p class="h3 text-warning-lter m-l">{{vm.member.fullName}}</p>
+                        <span class="h1 m-l text-white">{{vm.member.phone}}</span>
+                        <p class="h5 m-l text-white">đ/c: {{vm.member.email}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row m-t m-l-n-xs m-r-n-xs">
+    <div class="col-lg-2 col-md-1 hidden-sm hidden-xs p-t-l-xs"></div>
+    <div class="col-lg-8 col-md-10 col-sm-12 p-t-l-xs m-t-n-sm">
+        <div class="row m-l-n-xs m-r-n-xs">
+            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 pull-right p-t-l-xs">
+                <div class="list-group list-group-lg list-group-sp">
+                    <div class="list-group-item clearfix" ng-init="mouseIn = false;" ng-mouseleave="mouseIn = false;" ng-mouseenter="mouseIn = true;" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <span class="clear" style="overflow: initial;">
+                            <p style="">
+                                <b class="pull-left h0 text-warning m-l-sm icon icon-trophy"  style="margin-top: 7px; margin-right: 3px"></b>
+                                <span class="pull-left" style="margin-top: 7px">
+                                <span class="text-shadow-red text-white"> Chuyên nghiệp: </span>
+                        <br \>
+                        <uib-rating class="h4 text-shadow-red pull-right" ng-model="vm.cn" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star text-white'"></uib-rating>
+                        </span>
+                        <b class="h0 text-warning m-l-sm m-b-sm">{{vm.chuyen_nghiep}}</b>
+                        </p>
+                        <p style="">
+                            <b class="pull-left h0 text-warning m-l-sm icon icon-graduation" style="margin-top: 7px; margin-right: 3px"></b>
+                            <span class="pull-left" style="margin-top: 7px">
+                                <span class="text-shadow-red text-white"> Chuyên môn: </span>
+                            <br \>
+                            <uib-rating class="h4 text-shadow-red pull-right" ng-model="vm.cm" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star text-white'"></uib-rating>
+                            </span>
+                            <b class="h0 text-warning m-l-sm m-b-sm">{{vm.chuyen_mon}}</b>
+                        </p>
+                        <p style="">
+                            <b class="pull-left h0 text-warning m-l-sm icon fa fa-smile-o" style="margin-top: 7px; margin-right: 8px"></b>
+                            <span class="pull-left" style="margin-top: 7px">
+                                <span class="text-shadow-red text-white"> Thân thiện: </span>
+                            <br \>
+                            <uib-rating class="h4 text-shadow-red pull-right" ng-model="vm.tt" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star text-white'"></uib-rating>
+                            </span>
+                            <b class="h0 text-warning m-l-sm m-b-sm">{{vm.than_thien}}</b>
+                        </p>
+                        <p>
+                            <a href="#" ng-show="vm.member.address || (mouseIn && vm.edit())" editable-text="vm.member.address" edit-disabled="!vm.edit()" onbeforesave="vm.updateMember()"> {{ vm.member.address || 'Click để nhập địa chỉ' }}</a>
+                        </p>
+                        <ul class="nav nav-pills nav-sm" style="margin-right: 45px;">
+                            <div>
+                                <div class="fb-like  pull-left" data-href="http://giasan.vn/address/{{vm.addr}}" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true"></div>
+                            </div>
+                            <a class="fb-share btn btn-info pull-left" ng-click="vm.share_facebook()">
+                                <span class="text">Chia sẻ</span>
+                            </a>
+                        </ul>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12 p-t-l-xs">
+                <!--Image Card-->
+                <div class="card ">
+                    <div class="card-content" style="padding: 10px">
+                        <h5 style="
+                            font-style: normal;
+                            font-weight: bold;
+                            line-height: 25px;
+                            font-size: 14px;
+                            line-height: 1.358;
+                            word-break: break-word;
+                            word-wrap: break-word;
+                            color: #1d2129;
+                            font-family: Helvetica, Arial, sans-serif;
+                            direction: ltr;
+                        ">Khu vực hoạt động</h5>
+                        <div ui-tree data-drag-enabled="false">
+                            <ol ui-tree-nodes ng-model="vm.area">
+                                <li ui-tree-node ng-repeat="entity in vm.area" data-collapsed="true">
+                                    <div ui-tree-handle class="tree-node tree-node-content">
+                                        <a class="btn btn-success btn-sm" ng-click="vm.toggle(this);" data-nodrag>
+                                            <span class="fa" ng-class="{'fa-angle-right': collapsed, 'fa-angle-down': !collapsed}"></span>
+                                        </a>
+                                        <a ng-click="vm.toggle(this)">{{entity.name}} <span ng-show="entity.count">- {{entity.count}} tin đăng</span></a>
+                                    </div>
+                                    <ol ui-tree-nodes ng-model="entity.nodes" ng-class="{'hidden': collapsed}">
+                                        <li ui-tree-node ng-repeat="entity2 in entity.nodes" data-collapsed="true">
+                                            <div ui-tree-handle class="tree-node tree-node-content" style="overflow: auto;">
+                                                <a class="btn btn-success btn-sm" ng-click="vm.toggle(this)" data-nodrag >
+                                                    <span class="fa" ng-class="{'fa-angle-right': collapsed, 'fa-angle-down': !collapsed}"></span>
+                                                </a>
+                                                <a ng-click="vm.toggle(this)" style="margin-left: 5px">{{entity2.name}} <span ng-show="entity2.count">- {{entity2.count}} tin đăng</span>
+                                                </a>
+                                            </div>
+                                            <ol ui-tree-nodes ng-model="entity2.nodes" ng-class="{'hidden': collapsed}">
+                                                <li ui-tree-node ng-repeat="item in entity2.nodes" >
+                                                    <div ui-tree-handle class="tree-node tree-node-content" style="overflow: auto;">
+                                                        <a class="btn btn-success btn-sm" ng-click="vm.toggle(this)" data-nodrag >
+                                                            <span class="fa" ng-class="{'fa-angle-right': collapsed, 'fa-angle-down': !collapsed}"></span>
+                                                        </a>
+                                                        <a ng-click="vm.toggle(this)">
+                                                        {{item.name}} <span ng-show="item.count">- {{item.count}} tin đăng</span>
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                </div>
+        
+                <div class="bg-white-only no-border-xs my-box m-t-sm">
+                    <div class="fb-comments" data-href="http://giasan.vn/address/{{vm.addr}}" data-numposts="17" data-width="100%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-1 hidden-sm hidden-xs p-t-l-xs"></div>
+</div>
+<div ng-include="'app/layouts/footer/footer.html'"></div>
+<style type="text/css">
+/*.two {
+    background: linear-gradient(rgba(255, 0, 0, 0), rgba(255, 255, 0, 0), rgba(237, 241, 242, 0), black);
+}*/
+
+.text-shadow-red {
+    text-shadow: 0 0 3px #000;
+}
+
+.fb-share {
+    margin-left: 2px;
+    background-color: #4267b2;
+    border-color: #4267b2;
+    height: 28px;
+    font-weight: bold;
+    /* border: 1px solid #365899; */
+    padding: 4px 14px;
+    border-radius: 4px;
+    font-family: Helvetica, Arial, sans-serif;
+    /* padding: 0 4px 0 6px; */
+}
+
+.h0 {
+    font-size: 40px;
+}
+</style>

@@ -1,0 +1,66 @@
+
+<div>
+    <h2><span data-translate="lab1App.profile.detail.title">Profile</span> {{vm.profile.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="lab1App.profile.ten">Ten</span></dt>
+        <dd>
+            <span>{{vm.profile.ten}}</span>
+        </dd>
+        <dt><span data-translate="lab1App.profile.sdt">Sdt</span></dt>
+        <dd>
+            <span>{{vm.profile.sdt}}</span>
+        </dd>
+        <dt><span data-translate="lab1App.profile.diachi">Diachi</span></dt>
+        <dd>
+            <span>{{vm.profile.diachi}}</span>
+        </dd>
+        <dt><span data-translate="lab1App.profile.anhbia">Anhbia</span></dt>
+        <dd>
+            <div ng-if="vm.profile.anhbia">
+                <a ng-click="vm.openFile(vm.profile.anhbiaContentType, vm.profile.anhbia)">
+                    <img data-ng-src="{{'data:' + vm.profile.anhbiaContentType + ';base64,' + vm.profile.anhbia}}" style="max-width: 100%;" alt="profile image"/>
+                </a>
+                {{vm.profile.anhbiaContentType}}, {{vm.byteSize(vm.profile.anhbia)}}
+            </div>
+        </dd>
+        <dt><span data-translate="lab1App.profile.anhdaidien">Anhdaidien</span></dt>
+        <dd>
+            <div ng-if="vm.profile.anhdaidien">
+                <a ng-click="vm.openFile(vm.profile.anhdaidienContentType, vm.profile.anhdaidien)">
+                    <img data-ng-src="{{'data:' + vm.profile.anhdaidienContentType + ';base64,' + vm.profile.anhdaidien}}" style="max-width: 100%;" alt="profile image"/>
+                </a>
+                {{vm.profile.anhdaidienContentType}}, {{vm.byteSize(vm.profile.anhdaidien)}}
+            </div>
+        </dd>
+        <dt><span data-translate="lab1App.profile.anhcanhan">Anhcanhan</span></dt>
+        <dd>
+            <div ng-if="vm.profile.anhcanhan">
+                <a ng-click="vm.openFile(vm.profile.anhcanhanContentType, vm.profile.anhcanhan)">
+                    <img data-ng-src="{{'data:' + vm.profile.anhcanhanContentType + ';base64,' + vm.profile.anhcanhan}}" style="max-width: 100%;" alt="profile image"/>
+                </a>
+                {{vm.profile.anhcanhanContentType}}, {{vm.byteSize(vm.profile.anhcanhan)}}
+            </div>
+        </dd>
+        <dt><span data-translate="lab1App.profile.tieusu">Tieusu</span></dt>
+        <dd>
+            <span>{{vm.profile.tieusu}}</span>
+        </dd>
+        <dt><span data-translate="lab1App.profile.user">User</span></dt>
+        <dd>
+            {{vm.profile.user.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="profile-detail.edit({id:vm.profile.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,157 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myProfileLabel" data-translate="lab1App.profile.home.createOrEditLabel">Create or edit a Profile</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.profile.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.profile.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="lab1App.profile.ten" for="field_ten">Ten</label>
+            <input type="text" class="form-control" name="ten" id="field_ten"
+                    ng-model="vm.profile.ten"
+                    required/>
+            <div ng-show="editForm.ten.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.ten.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="lab1App.profile.sdt" for="field_sdt">Sdt</label>
+            <input type="text" class="form-control" name="sdt" id="field_sdt"
+                    ng-model="vm.profile.sdt"
+                    required/>
+            <div ng-show="editForm.sdt.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.sdt.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="lab1App.profile.diachi" for="field_diachi">Diachi</label>
+            <input type="text" class="form-control" name="diachi" id="field_diachi"
+                    ng-model="vm.profile.diachi"
+                    required/>
+            <div ng-show="editForm.diachi.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.diachi.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setAnhbia($file, vm.profile)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="lab1App.profile.anhbia" for="field_anhbia">Anhbia</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.profile.anhbiaContentType + ';base64,' + vm.profile.anhbia}}" style="max-height: 100px;" ng-if="vm.profile.anhbia" alt="profile image"/>
+                <div ng-if="vm.profile.anhbia" class="help-block clearfix">
+                    <span class="pull-left">{{vm.profile.anhbiaContentType}}, {{vm.byteSize(vm.profile.anhbia)}}</span>
+                    <button type="button" ng-click="vm.profile.anhbia=null;vm.profile.anhbiaContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setAnhbia($file, vm.profile)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="anhbia" id="field_anhbia"
+                    ng-model="vm.profile.anhbia"
+                    required/>
+            <input type="hidden" class="form-control" name="anhbiaContentType" id="field_anhbiaContentType"
+                    ng-model="vm.profile.anhbiaContentType" />
+            <div ng-show="editForm.anhbia.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.anhbia.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setAnhdaidien($file, vm.profile)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="lab1App.profile.anhdaidien" for="field_anhdaidien">Anhdaidien</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.profile.anhdaidienContentType + ';base64,' + vm.profile.anhdaidien}}" style="max-height: 100px;" ng-if="vm.profile.anhdaidien" alt="profile image"/>
+                <div ng-if="vm.profile.anhdaidien" class="help-block clearfix">
+                    <span class="pull-left">{{vm.profile.anhdaidienContentType}}, {{vm.byteSize(vm.profile.anhdaidien)}}</span>
+                    <button type="button" ng-click="vm.profile.anhdaidien=null;vm.profile.anhdaidienContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setAnhdaidien($file, vm.profile)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="anhdaidien" id="field_anhdaidien"
+                    ng-model="vm.profile.anhdaidien"
+                    required/>
+            <input type="hidden" class="form-control" name="anhdaidienContentType" id="field_anhdaidienContentType"
+                    ng-model="vm.profile.anhdaidienContentType" />
+            <div ng-show="editForm.anhdaidien.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.anhdaidien.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setAnhcanhan($file, vm.profile)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="lab1App.profile.anhcanhan" for="field_anhcanhan">Anhcanhan</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.profile.anhcanhanContentType + ';base64,' + vm.profile.anhcanhan}}" style="max-height: 100px;" ng-if="vm.profile.anhcanhan" alt="profile image"/>
+                <div ng-if="vm.profile.anhcanhan" class="help-block clearfix">
+                    <span class="pull-left">{{vm.profile.anhcanhanContentType}}, {{vm.byteSize(vm.profile.anhcanhan)}}</span>
+                    <button type="button" ng-click="vm.profile.anhcanhan=null;vm.profile.anhcanhanContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setAnhcanhan($file, vm.profile)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="anhcanhan" id="field_anhcanhan"
+                    ng-model="vm.profile.anhcanhan"
+                    required/>
+            <input type="hidden" class="form-control" name="anhcanhanContentType" id="field_anhcanhanContentType"
+                    ng-model="vm.profile.anhcanhanContentType" />
+            <div ng-show="editForm.anhcanhan.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.anhcanhan.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="lab1App.profile.tieusu" for="field_tieusu">Tieusu</label>
+                <textarea class="form-control" name="tieusu" id="field_tieusu"
+                    ng-model="vm.profile.tieusu" ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="lab1App.profile.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" ng-model="vm.profile.user" ng-options="user as user.login for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

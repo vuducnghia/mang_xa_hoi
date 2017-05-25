@@ -1,0 +1,87 @@
+<div>
+    <h2 data-translate="lab1App.profile.home.title">Profiles</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="profile.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="lab1App.profile.home.createLabel">
+                        Create new Profile
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="lab1App.profile.ten">Ten</span></th>
+                    <th><span data-translate="lab1App.profile.sdt">Sdt</span></th>
+                    <th><span data-translate="lab1App.profile.diachi">Diachi</span></th>
+                    <th><span data-translate="lab1App.profile.anhbia">Anhbia</span></th>
+                    <th><span data-translate="lab1App.profile.anhdaidien">Anhdaidien</span></th>
+                    <th><span data-translate="lab1App.profile.anhcanhan">Anhcanhan</span></th>
+                    <th><span data-translate="lab1App.profile.tieusu">Tieusu</span></th>
+                    <th><span data-translate="lab1App.profile.user">User</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="profile in vm.profiles track by profile.id">
+                    <td><a ui-sref="profile-detail({id:profile.id})">{{profile.id}}</a></td>
+                    <td>{{profile.ten}}</td>
+                    <td>{{profile.sdt}}</td>
+                    <td>{{profile.diachi}}</td>
+                    <td>
+                        <a ng-if="profile.anhbia" ng-click="vm.openFile(profile.anhbiaContentType, profile.anhbia)">
+                            <img data-ng-src="{{'data:' + profile.anhbiaContentType + ';base64,' + profile.anhbia}}" style="max-height: 30px;" alt="profile image"/>
+                        </a>
+                        <span ng-if="profile.anhbia">{{profile.anhbiaContentType}}, {{vm.byteSize(profile.anhbia)}}</span>
+                    </td>
+                    <td>
+                        <a ng-if="profile.anhdaidien" ng-click="vm.openFile(profile.anhdaidienContentType, profile.anhdaidien)">
+                            <img data-ng-src="{{'data:' + profile.anhdaidienContentType + ';base64,' + profile.anhdaidien}}" style="max-height: 30px;" alt="profile image"/>
+                        </a>
+                        <span ng-if="profile.anhdaidien">{{profile.anhdaidienContentType}}, {{vm.byteSize(profile.anhdaidien)}}</span>
+                    </td>
+                    <td>
+                        <a ng-if="profile.anhcanhan" ng-click="vm.openFile(profile.anhcanhanContentType, profile.anhcanhan)">
+                            <img data-ng-src="{{'data:' + profile.anhcanhanContentType + ';base64,' + profile.anhcanhan}}" style="max-height: 30px;" alt="profile image"/>
+                        </a>
+                        <span ng-if="profile.anhcanhan">{{profile.anhcanhanContentType}}, {{vm.byteSize(profile.anhcanhan)}}</span>
+                    </td>
+                    <td>{{profile.tieusu}}</td>
+                    <td>
+                        {{profile.user.login}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="profile-detail({id:profile.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="profile.edit({id:profile.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="profile.delete({id:profile.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
